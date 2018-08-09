@@ -1,10 +1,10 @@
 export HISTFILE=~/.zsh_history
-export HISTSIZE=2048
-export SAVEHIST=2048
+export HISTSIZE=10000000
+export SAVEHIST=10000000
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd..:zh"
 
 # Commands that begin with a space are not added to history
-setopt HIST_IGNORE_SPACE
+# setopt HIST_IGNORE_SPACE
 
 # Remove superfluous blanks from each command line being added
 # to the history list.

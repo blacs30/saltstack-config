@@ -16,9 +16,15 @@ base16-shell:
     - name: https://github.com/chriskempson/base16-shell.git
     - target: {{ grains.homedir }}/.config/base16-shell
     - user: {{ grains.user }}
-{% endif %}
 
 pcscd:
   service.running:
     - enable: True
     - reload: True
+{% endif %}
+
+{% if grains['os'] == 'MacOS' %}
+include:
+  - setup-macos
+  - packages-macos
+{% endif %}

@@ -7,19 +7,6 @@ function tf() {
   run_with_docker "hashicorp/terraform" "latest" "terraform" $@
 }
 
-## Elixir
-function elixir() {
-  run_with_docker "elixir" "latest" "elixir" $@
-}
-
-function iex() {
-  run_with_docker "elixir" "latest" "iex" $@
-}
-
-function mix() {
-  run_with_docker "elixir" "latest" "mix" $@
-}
-
 ## Go
 function go() {
   docker run --rm -u $UID -e GOPATH -v $GOPATH:/$GOPATH -v $PWD:$PWD -w $PWD -it golang:1.10 go $@

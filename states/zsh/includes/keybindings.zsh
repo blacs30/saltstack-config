@@ -1,22 +1,26 @@
-#
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+zsh-forward-word () {
+      local WORDCHARS="${WORDCHARS:s#/#}"
+      WORDCHARS="${WORDCHARS:s#.#}"
+      zle forward-word
+    }
+zle -N zsh-forward-word
+bindkey '^[f' zsh-forward-word
 
-# Rebind HOME and END to do the decent thing:
-bindkey '\e[1~' beginning-of-line
-bindkey '\e[4~' end-of-line
+zsh-backward-word () {
+      local WORDCHARS="${WORDCHARS:s#/#}"
+      WORDCHARS="${WORDCHARS:s#.#}"
+      zle backward-word
+    }
+zle -N zsh-backward-word
 
-# Control <- and Control ->
-bindkey '\e[1;9C' forward-word
-bindkey '\e[1;9D' backward-word
+bindkey '^[b' zsh-backward-word
+bindkey '^[[3~' delete-char
 
-case $TERM in (xterm*)
-  bindkey '\e[H' beginning-of-line
-  bindkey '\e[F' end-of-line
-esac
-
-# And DEL too, as well as PGDN and insert:
-bindkey '\e[3~' delete-char
-bindkey '\e[6~' end-of-history
-bindkey '\e[2~' redisplay
-
+backward-kill-not-greedy () {
+    local WORDCHARS="${WORDCHARS:s#/#}"
+    WORDCHARS="${WORDCHARS:s#.#}"
+    zle backward-kill-word
+}
+zle -N backward-kill-not-greedy
+bindkey \^W backward-kill-not-greedy
+bindkey \^U backward-kill-line
