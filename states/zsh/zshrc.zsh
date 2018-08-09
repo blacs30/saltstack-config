@@ -5,9 +5,9 @@ source ~/.zsh/history.zsh
 source ~/.zsh/keybindings.zsh
 source ~/.zsh/paths.zsh
 
+#zmodload zsh/zprof
 source ~/.zsh/zplug.zsh
-
-#source ~/.zsh/powerlevel9k.zsh
+#zprof
 
 # fzf Fuzzy Finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
