@@ -29,6 +29,11 @@ gnupg:
     - name: {{ absolute_home_path }}/.gnupg/gpg-agent.conf
     - text: 'pinentry-program /usr/local/bin/pinentry-mac'
 
+install-swift-trash:
+  cmd.run:
+    - name: brew install --HEAD macmade/tap/trash
+    - unless: type trash
+
 {% for pip_package in mac_pip_packages %}
 {{ pip_package }}:
   pip.installed

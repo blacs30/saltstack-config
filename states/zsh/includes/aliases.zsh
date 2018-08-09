@@ -113,7 +113,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     alias pbp='pbpaste'
 
     # Remove all items safely, to Trash (`brew install trash`).
-    rm () { trash $* }
+    alias rm='trash'
 
     # Lock current session and proceed to the login screen.
     alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
