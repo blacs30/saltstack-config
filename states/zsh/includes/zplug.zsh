@@ -38,6 +38,7 @@ zplug "plugins/jira",                  from:oh-my-zsh
 zplug "plugins/sublime",                from:oh-my-zsh
 zplug "plugins/dash",                from:oh-my-zsh
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+zplug "willghatch/zsh-saneopt", from:"github", use:"saneopt", as:plugin
 zplug "plugins/github",                    from:oh-my-zsh
 
 # disable as long as not really needed

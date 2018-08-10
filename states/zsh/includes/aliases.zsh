@@ -203,6 +203,11 @@ alias reload="exec $SHELL -l"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
+# alias vi to vim
+alias vi=' vim'
+alias vim=' vim'
+alias nvim=' vim'
+
 ########
 # unused
 #######

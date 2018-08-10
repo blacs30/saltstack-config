@@ -10,7 +10,14 @@ zsh-zshrc:
     - source: salt://{{ slspath }}/zshrc.zsh
     - user: {{ grains['username'] }}
     - group: {{ grains['groupname'] }}
-    - template: jinja
+
+
+zsh-zshlogin:
+  file.managed:
+    - name: {{ absolute_home_path }}/.zlogin
+    - source: salt://{{ slspath }}/zlogin.zsh
+    - user: {{ grains['username'] }}
+    - group: {{ grains['groupname'] }}
 
 {% else %}
 
