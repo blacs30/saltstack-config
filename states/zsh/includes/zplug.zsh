@@ -6,9 +6,9 @@ source $ZPLUG_HOME/init.zsh
 
 zplug "paulmelnikow/zsh-startup-timer"
 
-#if [[ "$OSTYPE" == darwin* ]] && [[ -n "$ITERM_SESSION_ID" ]] ; then
-#  zplug "tysonwolker/iterm-tab-colors"
-#fi
+if [[ "$OSTYPE" == darwin* ]] && [[ -n "$ITERM_SESSION_ID" ]] ; then
+  zplug "tysonwolker/iterm-tab-colors"
+fi
 
 # zplug "plugins/command-not-found",      from:oh-my-zsh
 zplug "plugins/colored-man-pages",      from:oh-my-zsh

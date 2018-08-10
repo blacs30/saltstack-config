@@ -38,9 +38,3 @@ install-swift-trash:
 {{ pip_package }}:
   pip.installed
 {% endfor %}
-
-# do it's own setup
-#iterm2:
-#  pkg.installed:
-#    - name: caskroom/cask/iterm2
-#    - caskroom/cask/sublime-text

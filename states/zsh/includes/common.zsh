@@ -299,6 +299,20 @@ chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 }
 
+
+######################
+#       ZSH OPTIONS
+#####################
+# Correct commands.
+setopt CORRECT
+setopt interactivecomments # allow to use # in the shell to comment a comment
+
+setopt BRACE_CCL          # Allow brace character class list expansion.
+setopt COMBINING_CHARS    # Combine zero-length punctuation characters (accents)
+# with the base character.
+setopt RC_QUOTES          # Allow 'Henry''s Garage' instead of 'Henry'\''s Garage'.
+unsetopt MAIL_WARNING     # Don't print a warning message if a mail file has been accessed.
+
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
 setopt PATH_DIRS           # Perform path search even on command names with slashes.
@@ -311,6 +325,24 @@ unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor
 # You can cd into a directory by typing its name, no cd required
 setopt AUTOCD
 setopt autopushd pushdignoredups PUSHD_SILENT PUSHD_TO_HOME
+
+setopt CDABLE_VARS          # Change directory to a path stored in a variable.
+setopt AUTO_NAME_DIRS       # Auto add variable-stored paths to ~ list.
+setopt MULTIOS              # Write to multiple descriptors.
+setopt EXTENDED_GLOB        # Use extended globbing syntax.
+unsetopt CLOBBER            # Do not overwrite existing files with > and >>.
+                            # Use >! and >>! to bypass.
+#
+# Jobs
+#
+
+setopt LONG_LIST_JOBS     # List jobs in the long format by default.
+setopt AUTO_RESUME        # Attempt to resume existing job before creating a new process.
+setopt NOTIFY             # Report status of background jobs immediately.
+unsetopt BG_NICE          # Don't run all background jobs at a lower priority.
+unsetopt HUP              # Don't kill jobs on shell exit.
+unsetopt CHECK_JOBS       # Don't report on jobs when shell exit.
+
 
 # No completion for backup files
 zstyle ':completion:*:complete:-command-::*' ignored-patterns '*\~'
@@ -331,7 +363,7 @@ BROWSER=''
 unset BROWSER
 
 if [[ "$OSTYPE" == darwin* ]] && [[ -n "$ITERM_SESSION_ID" ]] ; then
-   source ~/.iterm2_shell_integration.`basename $SHELL`
+   source ~/.iterm2_shell_integration.zsh
 fi
 
 ##########################
