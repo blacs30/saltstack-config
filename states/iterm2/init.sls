@@ -20,3 +20,4 @@ iterm2-shell-integration:
     - user: {{ grains['username'] }}
     - group: {{ grains['groupname'] }}
     - unless: {{ absolute_home_path }}/.iterm2_shell_integration.zsh
+    - source_hash: sha256=f401d20df00873bcc4bebef5fcf4471ecbcffe2370c6a0871ee8957783d6e6fc

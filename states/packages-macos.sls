@@ -34,6 +34,11 @@ install-swift-trash:
     - name: brew install --HEAD macmade/tap/trash
     - unless: type trash
 
+install-cloudflare-cli:
+  cmd.run:
+    - name: npm install -g cloudflare-cli
+    - unless: type cfcli
+
 {% for pip_package in mac_pip_packages %}
 {{ pip_package }}:
   pip.installed

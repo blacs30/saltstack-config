@@ -1,31 +1,25 @@
+{% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
 git-config:
   file.managed:
-    - name: {{ grains.homedir }}/.gitconfig
-    - source: salt:///git/config
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
+    - name: {{ absolute_home_path }}/.gitconfig
+    - source: salt://{{ slspath }}/config
+    - user: grains['username'] }}
+    - group: grains['groupname'] }}
     - force: True
 
 git-ignore:
   file.managed:
-    - name: {{ grains.homedir }}/.gitignore
-    - source: salt:///git/ignore
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
+    - name: {{ absolute_home_path }}/.gitignore
+    - source: salt:///{{ slspath }}/ignore
+    - user: grains['username'] }}
+    - group: grains['groupname'] }}
     - force: True
 
-git-templates-dir:
-  file.directory:
-    - name: {{ grains.homedir }}/.git/templates
+git-templates-commit:
+  file.recurse:
+    - name: {{ absolute_home_path }}/git-templates/
+    - source: salt:///{{ slspath }}/templates
+    - user: grains['username'] }}
+    - group: grains['groupname'] }}
+    - clean: True
     - makedirs: True
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
-    - force: True
-
-git-commit:
-  file.managed:
-    - name: {{ grains.homedir }}/.git/templates/commit
-    - source: salt:///git/templates/commit.txt
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
-    - force: True
