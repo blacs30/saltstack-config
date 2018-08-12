@@ -4,12 +4,8 @@ My personal dotfiles, coordinated by SaltStack
 ## Prerequisites
 You must have `wget` installed. Everybody has that installed though, right?
 
-## Configure Everything
+## Install brew and saltstack, optionally run highstate
 ```
 ./init.sh
 ```
 
-## Configure A Single State
-```
-./init.sh <state-name>
-```

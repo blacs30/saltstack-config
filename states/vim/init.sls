@@ -1,21 +1,27 @@
-vim-dein-installed?:
-  file.exists:
-    - name: {{ grains.homedir }}/.dein
+{% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
 
-vim-install-dein:
-  cmd.script:
-    - name: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
-    - args: {{ grains.homedir }}/.dein
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
-    - onfail:
-      - file: vim-dein-installed?
+vim-ultimate-install:
+  git.latest:
+    - name: https://github.com/amix/vimrc.git
+    - target: {{ absolute_home_path }}/.vim_runtime
+    - depth: 1
+    - rev: master
+    - force_reset: True
+    - user: {{ grains['username'] }}
+    - unless: test -d {{ absolute_home_path }}/.vim_runtime
 
 vim-configuration:
   file.managed:
-    - name: {{ grains.homedir }}/.config/nvim/init.vim
-    - source: salt://vim/init.vim
-    - template: jinja
-    - makedirs: True
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
+    - name: {{ absolute_home_path }}/.vimrc
+    - source: salt://{{ slspath }}/vimrc
+    - user: {{ grains['username'] }}
+    - group: {{ grains['groupname'] }}
+
+vim-myconfig:
+  file.managed:
+    - name: {{ absolute_home_path }}/.vim_runtime/my_configs.vim
+    - user: {{ grains['username'] }}
+    - group: {{ grains['groupname'] }}
+    - contents: |
+        " Use the OS clipboard
+        set clipboard=unnamedplus,unnamed,autoselect
