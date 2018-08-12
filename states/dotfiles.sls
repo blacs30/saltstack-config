@@ -1,6 +1,8 @@
 include:
     - git
     - gpg
+    - iterm2
+    - spacemacs
     - vim
     - zsh
-    - spacemacs
+    - misc-dotconfigs

@@ -2,7 +2,7 @@
 git-config:
   file.managed:
     - name: {{ absolute_home_path }}/.gitconfig
-    - source: salt://{{ slspath }}/config
+    - source: salt://{{ slspath }}/gitconfig
     - user: grains['username'] }}
     - group: grains['groupname'] }}
     - force: True
@@ -10,7 +10,7 @@ git-config:
 git-ignore:
   file.managed:
     - name: {{ absolute_home_path }}/.gitignore
-    - source: salt:///{{ slspath }}/ignore
+    - source: salt:///{{ slspath }}/gitignore
     - user: grains['username'] }}
     - group: grains['groupname'] }}
     - force: True

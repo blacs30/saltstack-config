@@ -1,12 +1,11 @@
-{% from "packages.jinja" import packages with context %}
-{% from "packages.jinja" import mas_apps with context %}
-{% from "packages.jinja" import mac_packages with context %}
-{% from "packages.jinja" import mac_pip_packages with context %}
+{% from "packages/packages.jinja" import mas_apps with context %}
+{% from "packages/packages.jinja" import mac_packages with context %}
+{% from "packages/packages.jinja" import mac_pip_packages with context %}
 {% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
 
 
 {% for app in mas_apps %}
-{{ app }}:
+mas-{{ app }}:
   cmd.run:
     - name: mas install  {{ mas_apps[app] }}
     - unless: mas list | grep -q {{ mas_apps[app] }}
@@ -16,8 +15,9 @@
 
 
 {% for package in mac_packages %}
-{{ package }}:
-  pkg.installed
+brew-{{ package }}:
+  pkg.installed:
+    - name: {{ package }}
 {% endfor %}
 
 gnupg:
@@ -40,6 +40,7 @@ install-cloudflare-cli:
     - unless: type cfcli
 
 {% for pip_package in mac_pip_packages %}
-{{ pip_package }}:
-  pip.installed
+pip-{{ pip_package }}:
+  pip.installed:
+    - name: {{ pip_package }}
 {% endfor %}

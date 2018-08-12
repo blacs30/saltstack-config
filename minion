@@ -3,7 +3,11 @@ master_type: disable
 file_client: local
 root_dir: .
 log_dir: ./var/log
+cachedir: ./var/cache/salt/minion
 state_output: changes
 file_roots:
   base:
     - ./states
+pillar_roots:
+  base:
+    - ./pillar
