@@ -1,33 +1,16 @@
-{% if grains['os_family'] != "NixOS" %}
-gnupg-directory:
-  file.directory:
-    - name: {{ grains.homedir }}/.gnupg
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
-
-gpg-rawkode:
-  cmd.run:
-    - name: "curl https://keybase.io/rawkode/pgp_keys.asc | gpg --import"
-    - runas: {{ grains.user }}
+{% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
 
 gpg-config:
   file.managed:
-    - name: {{ grains.homedir }}/.gnupg/gpg.conf
+    - name: {{ absolute_home_path }}/.gnupg/gpg.conf
     - source: salt://gpg/gpg.conf
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
+    - user: {{ grains['username'] }}
+    - group: {{ grains['groupname'] }}
+    - makedirs: True
 
 gpg-agent-config:
   file.managed:
-    - name: {{ grains.homedir }}/.gnupg/gpg-agent.conf
+    - name: {{ absolute_home_path }}/.gnupg/gpg-agent.conf
     - source: salt://gpg/gpg-agent.conf
-    - user: {{ grains.user }}
-    - group: {{ grains.user }}
-
-gpg-disable-ssh-agent:
-  file.comment:
-    - name: /etc/X11/Xsession.options
-    - regex: ^use-ssh-agent
-    - onlyif:
-      - ls /etc/X11/Xsession.options
-{% endif %}
+    - user: {{ grains['username'] }}
+    - group: {{ grains['groupname'] }}

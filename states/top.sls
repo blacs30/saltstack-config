@@ -1,5 +1,5 @@
 base:
   '*':
-    - setup
-    - dotfiles
     - packages
+    - dotfiles
+    # - setup

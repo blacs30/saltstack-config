@@ -3,6 +3,17 @@
 {% from "packages/packages.jinja" import mac_pip_packages with context %}
 {% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
 
+install xcode-select:
+  cmd.run:
+    - name: |
+        # create the placeholder file that's checked by CLI updates' .dist code
+        # in Apple's SUS catalog
+        touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+        # find the CLI Tools update
+        PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
+        # install it
+        softwareupdate -i "$PROD" -v
+    - unless: xcode-select --install 2>&1 | grep installed
 
 {% for app in mas_apps %}
 mas-{{ app }}:

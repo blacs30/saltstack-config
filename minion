@@ -11,3 +11,9 @@ file_roots:
 pillar_roots:
   base:
     - ./pillar
+grains_dirs:
+  - ./_grains
+module_dirs:
+  - ./_modules
+states_dirs:
+  - ./_states
