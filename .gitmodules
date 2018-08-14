@@ -1,0 +1,4 @@
+[submodule "salt-osx"]
+	path = salt-osx
+	url = https://github.com/blacs30/salt-osx
+	branch = master
