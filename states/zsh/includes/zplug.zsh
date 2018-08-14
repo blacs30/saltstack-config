@@ -82,6 +82,7 @@ zplug_check () {
 # zplug "plugins/vault",                  from:oh-my-zsh
 # zplug "plugins/pip",                 from:oh-my-zsh
 # zplug "plugins/pep8",                 from:oh-my-zsh
+# zplug "plugins/heroku",                 from:oh-my-zsh
 # zplug "plugins/autopep8",                 from:oh-my-zsh
 # zplug "plugins/django",                 from:oh-my-zsh
 # zplug "Valiev/almostontop"

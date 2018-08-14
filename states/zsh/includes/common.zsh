@@ -438,21 +438,6 @@ function get-pass() {
             awk -F\" '/password:/ {print $2}';
 }
 
-
-# Report how long a command took, if it took more than a second
-export REPORTTIME=5
-
-DIRSTACKSIZE=9
-DIRSTACKFILE=~/.zdirs
-if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-  [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
-fi
-chpwd() {
-  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-}
-
-
 ######################
 #       ZSH OPTIONS
 #####################
