@@ -12,6 +12,14 @@ zsh-zshrc:
     - group: {{ grains['groupname'] }}
 
 
+zsh-zshenv:
+  file.managed:
+    - name: {{ absolute_home_path }}/.zshenv
+    - source: salt://{{ slspath }}/zshenv.zsh
+    - user: {{ grains['username'] }}
+    - group: {{ grains['groupname'] }}
+
+
 zsh-zshlogin:
   file.managed:
     - name: {{ absolute_home_path }}/.zlogin
