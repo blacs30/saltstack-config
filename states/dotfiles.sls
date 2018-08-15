@@ -5,4 +5,5 @@ include:
     - spacemacs
     - vim
     - zsh
+    - sublime
     - misc-dotconfigs
