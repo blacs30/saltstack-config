@@ -226,18 +226,6 @@ function dataurl() {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-
-# Shortens GitHub URLs. By Sorin Ionescu <sorin.ionescu@gmail.com>
-function gitio() {
-  local url="$1"
-  local code="$2"
-
-  [[ -z "$url" ]] && print "usage: $0 url code" >&2 && exit
-  [[ -z "$code" ]] && print "usage: $0 url code" >&2 && exit
-
-  curl -s -i 'http://git.io' -F "url=$url" -F "code=$code"
-}
-
 # Monitor IO in real-time (open files etc).
 function openfiles() {
   sudo dtrace -n 'syscall::open*:entry { printf("%s %s",execname,copyinstr(arg0)); }'
