@@ -45,6 +45,11 @@ install-swift-trash:
     - name: brew install --HEAD macmade/tap/trash
     - unless: type trash
 
+install-github-search-cli:
+  cmd.run:
+    - name: npm install -g gh-search-cli 
+    - unless: type ghs
+
 install-cloudflare-cli:
   cmd.run:
     - name: npm install -g cloudflare-cli
