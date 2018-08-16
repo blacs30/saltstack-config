@@ -26,10 +26,9 @@ alias e=edit
 # ---------
 if [[ -z "$LANG" ]]; then
     export LANGUAGE=en_US.UTF-8
-    export LC_ALL=en_US.UTF-8
     export LC_CTYPE=en_US.UTF-8
     export LC_ALL=en_US.UTF-8
-    #eval "$(locale)"
+    eval "$(locale)"
 fi
 
 
@@ -388,7 +387,7 @@ function manp {
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ];
 then
-  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+  export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
 fi
 
 gpg-connect-agent updatestartuptty /bye >/dev/null
