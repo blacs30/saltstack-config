@@ -1,7 +1,7 @@
 {% from "packages/packages.jinja" import mas_apps with context %}
 {% from "packages/packages.jinja" import mac_packages with context %}
 {% from "packages/packages.jinja" import mac_pip_packages with context %}
-{% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
+{% set absolute_home_path =  salt['cmd.shell']('echo $HOME') %}
 
 install xcode-select:
   cmd.run:

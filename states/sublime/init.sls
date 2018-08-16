@@ -1,4 +1,4 @@
-{% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
+{% set absolute_home_path =  salt['cmd.shell']('echo $HOME') %}
 
 {% if grains['os'] == 'MacOS' %}
 include:

@@ -4,7 +4,7 @@ zsh:
 zplug:
   pkg.installed
 
-{% set absolute_home_path =  salt['cmd.shell']('realpath $HOME') %}
+{% set absolute_home_path =  salt['cmd.shell']('echo $HOME') %}
 
 backup-existing-zsh-config:
   file.rename:
