@@ -15,13 +15,11 @@ vim-configuration:
     - name: {{ absolute_home_path }}/.vimrc
     - source: salt://{{ slspath }}/vimrc
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
 
 vim-myconfig:
   file.managed:
     - name: {{ absolute_home_path }}/.vim_runtime/my_configs.vim
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
     - contents: |
         " Use the OS clipboard
         set clipboard=unnamedplus,unnamed,autoselect

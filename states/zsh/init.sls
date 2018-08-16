@@ -9,7 +9,6 @@ zsh-zshrc:
     - name: {{ absolute_home_path }}/.zshrc
     - source: salt://{{ slspath }}/zshrc.zsh
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
 
 
 zsh-zshenv:
@@ -17,7 +16,6 @@ zsh-zshenv:
     - name: {{ absolute_home_path }}/.zshenv
     - source: salt://{{ slspath }}/zshenv.zsh
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
 
 
 zsh-zshlogin:
@@ -25,7 +23,6 @@ zsh-zshlogin:
     - name: {{ absolute_home_path }}/.zlogin
     - source: salt://{{ slspath }}/zlogin.zsh
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
 
 {% else %}
 
@@ -47,4 +44,3 @@ zsh-zshrc-includes:
     - source: salt://zsh/includes/
     - clean: True
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}

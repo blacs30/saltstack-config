@@ -4,7 +4,6 @@ git-config:
     - name: {{ absolute_home_path }}/.gitconfig
     - source: salt://{{ slspath }}/gitconfig
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
     - force: True
 
 git-ignore:
@@ -12,7 +11,6 @@ git-ignore:
     - name: {{ absolute_home_path }}/.gitignore
     - source: salt://{{ slspath }}/gitignore
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
     - force: True
 
 git-templates-commit:
@@ -20,6 +18,5 @@ git-templates-commit:
     - name: {{ absolute_home_path }}/git-templates/
     - source: salt://{{ slspath }}/templates
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
     - clean: True
     - makedirs: True

@@ -5,7 +5,6 @@ gpg-config:
     - name: {{ absolute_home_path }}/.gnupg/gpg.conf
     - source: salt://gpg/gpg.conf
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
     - makedirs: True
 
 gpg-agent-config:
@@ -13,4 +12,3 @@ gpg-agent-config:
     - name: {{ absolute_home_path }}/.gnupg/gpg-agent.conf
     - source: salt://gpg/gpg-agent.conf
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}

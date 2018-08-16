@@ -390,7 +390,9 @@ then
   export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
 fi
 
-gpg-connect-agent updatestartuptty /bye >/dev/null
+if type gpg-connect-agent > /dev/null 2&>1; then
+  gpg-connect-agent updatestartuptty /bye >/dev/null
+fi
 
 # Commonly used directories.
 dev="$HOME/Developer"

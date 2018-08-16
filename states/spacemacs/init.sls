@@ -10,7 +10,6 @@ spacemacs-config:
     - name: {{ absolute_home_path }}/.spacemacs
     - source: salt://{{ slspath }}/files/spacemacs
     - user: {{ grains['username'] }}
-    - group: {{ grains['groupname'] }}
 
 spacemacs-install:
   git.latest:
