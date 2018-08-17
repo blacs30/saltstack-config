@@ -1,2 +1,2 @@
-caskroom/cask/iterm:
+caskroom/cask/iterm2:
   pkg.installed
