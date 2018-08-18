@@ -29,6 +29,7 @@ mas-{{ app }}:
 brew-{{ package }}:
   pkg.installed:
     - name: {{ package }}
+    - unless: if [[ {{ package }} == *"cask"* ]]; then brew cask list | grep $(basename {{ package }}); else brew list | grewp $(basename package);fi
 {% endfor %}
 
 gnupg:

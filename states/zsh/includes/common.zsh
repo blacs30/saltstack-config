@@ -490,6 +490,26 @@ if [[ "$OSTYPE" == darwin* ]] && [[ -n "$ITERM_SESSION_ID" ]] ; then
    source ~/.iterm2_shell_integration.zsh
 fi
 
+# Scan all AWS profiles and list s3 buckets
+function scan_s3 {
+export AWS_HOME=~/.aws
+profile_array=()
+for i in $(grep profile $AWS_HOME/config|sed -e 's/.*profile \([a-zA-Z0-9_\.-]*\).*/\1/'); do profile_array+=($i); done
+profile_array+=('default')
+
+#loop AWS profiles
+for i in "${profile_array[@]}"; do
+  printf "\n\n\nS3 Bucket for profile: ${i} \n_______________________\n"
+  buckets=($(aws --profile "${i}" s3 ls s3:// --recursive | awk '{print $3}'))
+
+  #loop S3 buckets
+  for j in "${buckets[@]}"; do
+  echo "${j}"
+  #aws --profile "${i}" s3 ls s3://"${j}" --recursive --human-readable --summarize | awk END'{print}'
+  done
+
+done
+}
 ##########################
 ### Disabled
 ##########################
