@@ -10,7 +10,7 @@ file_roots:
     - ./states
 pillar_roots:
   base:
-    - ./pillar
+    - ./pillars
 grains_dirs:
   - ./_grains
 module_dirs:

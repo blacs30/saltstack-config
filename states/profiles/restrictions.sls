@@ -45,7 +45,7 @@ com.lisowski.config.restrictions.mobileconfig:
         GKFeatureAccountModificationAllowed: true
         GKFeatureAddingGameCenterFriendsAllowed: true
         GKFeatureMultiplayerGamingAllowed: true
-      - PayloadType: com.apple.MXA
+      - PayloadType: com.apple.MCX
         PayloadDisplayName: Restrictions
         safariAllowAutoFill: false
         DestroyFVKeyOnStandby: true

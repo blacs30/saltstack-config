@@ -5,7 +5,7 @@ com.lisowski.config.printing.mobileconfig:
     - displayname: Printing Configuration
     - organization: Lisowski Family
     - content:
-      - PayloadType: com.apple.mxcprinting
+      - PayloadType: com.apple.mcxprinting
         PayloadDisplayName: "Printing"
         RequireAdminToAddPrinters: true
         AllowLocalPrinters: true
