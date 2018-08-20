@@ -209,6 +209,10 @@ alias path='echo -e ${PATH//:/\\n}'
 alias vi=' vim'
 alias vim=' vim'
 alias nvim=' vim'
+if test -d /Applications/Emacs.app; then
+  alias emacs=' open -a /Applications/Emacs.app'
+fi
+
 
 ########
 # unused
