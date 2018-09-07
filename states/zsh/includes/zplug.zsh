@@ -57,6 +57,7 @@ zplug "plugins/docker-compose",         from:oh-my-zsh
 #zplug "eendroroy/alien"
 zplug "zakaziko99/agnosterzak-ohmyzsh-theme", use:agnosterzak.zsh-theme, as:theme, from:github
 
+zplug "powerline/fonts",                from:github, lazy:true
 
 zplug load
 
@@ -70,8 +71,12 @@ zplug_check () {
     fi
 }
 
+if [[ ! -f ~/.zshzplug-loaded ]]; then
+    zplug_check
+    touch ~/.zshzplug-loaded
+fi
+
 ## disabled plugins
-# zplug "powerline/fonts",                from:github, lazy:true
 # zplug "plugins/git-flow",                    from:oh-my-zsh, if:"$(git flow  > /dev/null 2>&1)"
 # zplug "plugins/urltools",                from:oh-my-zsh
 # zplug "plugins/sudo",                   from:oh-my-zsh
