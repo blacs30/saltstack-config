@@ -15,16 +15,6 @@ install xcode-select:
         softwareupdate -i "$PROD" -v
     - unless: xcode-select --install 2>&1 | grep installed
 
-{% for app in mas_apps %}
-mas-{{ app }}:
-  cmd.run:
-    - name: mas install  {{ mas_apps[app] }}
-    - unless: mas list | grep -q {{ mas_apps[app] }}
-    - require:
-        - pkg: mas
-{% endfor %}
-
-
 {% for package in mac_packages %}
 brew-{{ package }}:
   pkg.installed:
@@ -48,7 +38,7 @@ install-swift-trash:
 
 install-github-search-cli:
   cmd.run:
-    - name: npm install -g gh-search-cli 
+    - name: npm install -g gh-search-cli
     - unless: type ghs
 
 install-cloudflare-cli:

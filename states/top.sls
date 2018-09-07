@@ -2,5 +2,5 @@ base:
   '*':
     - packages
     - dotfiles
-    # - setup
+    - setup
     # - profiles

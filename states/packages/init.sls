@@ -1,2 +1,3 @@
 include:
-  - packages.macos
+  - packages.macos-base
+  - packages.macos-apps
