@@ -225,6 +225,7 @@ function dataurl() {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
+
 # Monitor IO in real-time (open files etc).
 function openfiles() {
   sudo dtrace -n 'syscall::open*:entry { printf("%s %s",execname,copyinstr(arg0)); }'
@@ -427,6 +428,7 @@ function get-pass() {
 ######################
 #       ZSH OPTIONS
 #####################
+setopt +o nomatch
 # Correct commands.
 setopt CORRECT
 setopt interactivecomments # allow to use # in the shell to comment a comment
