@@ -10,7 +10,6 @@ source $ZPLUG_HOME/init.zsh
 #  zplug "tysonwolker/iterm-tab-colors"
 #fi
 
-# zplug "plugins/command-not-found",      from:oh-my-zsh
 zplug "plugins/colored-man-pages",      from:oh-my-zsh
 zplug "plugins/colorize",               from:oh-my-zsh
 zplug "plugins/z",                      from:oh-my-zsh
@@ -24,30 +23,28 @@ zplug "desyncr/auto-ls"
 zplug "plugins/git",                    from:oh-my-zsh
 zplug "plugins/aws",                    from:oh-my-zsh, if:"(( $+commands[aws] ))"
 zplug "plugins/history",               from:oh-my-zsh
-# zplug "plugins/per-directory-history",  from:oh-my-zsh
+zplug "plugins/git-flow",                    from:oh-my-zsh, if:"$(git flow  > /dev/null 2>&1)"
 zplug "junegunn/fzf", use:"shell/*.zsh", as:plugin, if:"(( $+commands[fzf] ))"
 zplug "plugins/terraform",                from:oh-my-zsh
 zplug "plugins/gitignore",                    from:oh-my-zsh
+zplug "plugins/vault",                  from:oh-my-zsh
 zplug "plugins/python",                 from:oh-my-zsh
-zplug "plugins/dotenv",                 from:oh-my-zsh
-# zplug "plugins/xcode",                  from:oh-my-zsh
 zplug "plugins/brew",                  from:oh-my-zsh
-# zplug "plugins/vagrant",                  from:oh-my-zsh
-# zplug "plugins/vagrant-prompt",                  from:oh-my-zsh
 zplug "plugins/jira",                  from:oh-my-zsh
-# zplug "plugins/sublime",                from:oh-my-zsh
 zplug "plugins/dash",                from:oh-my-zsh
 zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "willghatch/zsh-saneopt", from:"github", use:"saneopt", as:plugin
 zplug "rawkode/zsh-docker-run", from:"github", as:plugin
 zplug "plugins/github",                    from:oh-my-zsh
-
-# disable as long as not really needed
+zplug "plugins/minikube",                from:oh-my-zsh
 zplug "plugins/docker",                 from:oh-my-zsh
+ 
+# disable as long as not really needed
 # zplug "plugins/docker-compose",         from:oh-my-zsh
 # zplug "plugins/kubectl",                from:oh-my-zsh
 # zplug "plugins/kube-ps1",                from:oh-my-zsh
-# zplug "plugins/minikube",                from:oh-my-zsh
+# zplug "plugins/vagrant",                  from:oh-my-zsh
+# zplug "plugins/vagrant-prompt",                  from:oh-my-zsh
 
 
 ##
@@ -70,24 +67,22 @@ zplug_check () {
     fi
 }
 
-if [[ ! -f ~/.zshzplug-loaded ]]; then
-    zplug_check
-    touch ~/.zshzplug-loaded
-fi
-
 ## disabled plugins
 # zplug "powerline/fonts",                from:github, lazy:true
-# zplug "plugins/git-flow",                    from:oh-my-zsh, if:"$(git flow  > /dev/null 2>&1)"
 # zplug "plugins/sudo",                   from:oh-my-zsh
 # zplug "plugins/forklift",                from:oh-my-zsh
 # zplug "plugins/screen",                  from:oh-my-zsh
 # zplug "plugins/osx",                  from:oh-my-zsh
 # zplug "plugins/golang",                  from:oh-my-zsh
 # zplug "plugins/swiftpm",                from:oh-my-zsh
-# zplug "plugins/vault",                  from:oh-my-zsh
 # zplug "plugins/pip",                 from:oh-my-zsh
 # zplug "plugins/pep8",                 from:oh-my-zsh
 # zplug "plugins/heroku",                 from:oh-my-zsh
 # zplug "plugins/autopep8",                 from:oh-my-zsh
 # zplug "plugins/django",                 from:oh-my-zsh
 # zplug "Valiev/almostontop"
+#zplug "plugins/dotenv",                 from:oh-my-zsh
+# zplug "plugins/sublime",                from:oh-my-zsh
+# zplug "plugins/xcode",                  from:oh-my-zsh
+# zplug "plugins/per-directory-history",  from:oh-my-zsh
+# zplug "plugins/command-not-found",      from:oh-my-zsh

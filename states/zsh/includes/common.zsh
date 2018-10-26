@@ -475,9 +475,9 @@ zstyle ':completion:*:complete:-command-::*' ignored-patterns '*\~'
 
 # Fuzzy completion
 zstyle ':completion:*' matcher-list '' \
-  'm:{a-zA-Z}={A-Za-z}' \
-  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-  'r:|?=** m:{a-z\-}={A-Z\_}'
+'m:{a-zA-Z}={A-Za-z}' \
+'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+'r:|?=** m:{a-z\-}={A-Z\_}'
 
 autoload -Uz compinit
 compinit -u
@@ -489,7 +489,7 @@ BROWSER=''
 unset BROWSER
 
 if [[ "$OSTYPE" == darwin* ]] && [[ -n "$ITERM_SESSION_ID" ]] ; then
-   source ~/.iterm2_shell_integration.zsh
+source ~/.iterm2_shell_integration.zsh
 fi
 
 # Scan all AWS profiles and list s3 buckets
@@ -501,17 +501,21 @@ profile_array+=('default')
 
 #loop AWS profiles
 for i in "${profile_array[@]}"; do
-  printf "\n\n\nS3 Bucket for profile: ${i} \n_______________________\n"
-  buckets=($(aws --profile "${i}" s3 ls s3:// --recursive | awk '{print $3}'))
+printf "\n\n\nS3 Bucket for profile: ${i} \n_______________________\n"
+buckets=($(aws --profile "${i}" s3 ls s3:// --recursive | awk '{print $3}'))
 
-  #loop S3 buckets
-  for j in "${buckets[@]}"; do
-  echo "${j}"
-  #aws --profile "${i}" s3 ls s3://"${j}" --recursive --human-readable --summarize | awk END'{print}'
-  done
+#loop S3 buckets
+for j in "${buckets[@]}"; do
+echo "${j}"
+#aws --profile "${i}" s3 ls s3://"${j}" --recursive --human-readable --summarize | awk END'{print}'
+done
 
 done
 }
+
+
+eval "$(direnv hook zsh)"
+
 ##########################
 ### Disabled
 ##########################
