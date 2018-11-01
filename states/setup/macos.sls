@@ -5,7 +5,6 @@ install-pyobjc-for-salt:
     - name: /usr/local/Cellar/salt/2018.3.2/libexec/bin/pip install PyObjC
     - unless: /usr/local/Cellar/salt/2018.3.2/libexec/bin/python -c 'import Foundation' > /dev/null 2&>1
 
-
 apply-macos-defaults:
   cmd.script:
     - name: salt://{{ slspath }}/files/macos-defaults.sh
@@ -17,7 +16,8 @@ apply-macos-init:
 install-fonts:
   archive.extracted:
     - source: https://github.com/powerline/fonts/archive/master.zip
-    - source_hash: sha1=7df7f31ec9270647746eae18c48f4ec2dafaaa2e
+    - source_hash: sha1=232946eba7372ba65709b411b2fac07a4458ea7d
     - name: {{ absolute_home_path }}/.powerline-fonts
   cmd.run:
     - name: {{ absolute_home_path }}/.powerline-fonts/fonts-master/install.sh
+    - onlyif: test -f {{ absolute_home_path }}/.powerline-fonts/fonts-master/install.sh

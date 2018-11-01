@@ -18,7 +18,8 @@
 		".git",
 		"log",
 		"tmp",
-		"node_modules"
+		"node_modules",
+		".terraform"
 	],
 	"font_face": "Source Code Pro",
 	"font_options":
