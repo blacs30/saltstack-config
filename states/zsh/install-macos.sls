@@ -1,8 +1,10 @@
-zsh:
-  pkg.installed
+install or upgrade zplug:
+  cmd.run:
+    - name: brew upgrade zplug || brew install zplug
 
-zplug:
-  pkg.installed
+install or upgrade zsh:
+  cmd.run:
+    - name: brew upgrade zsh || brew install zsh
 
 {% set absolute_home_path =  salt['cmd.shell']('echo $HOME') %}
 

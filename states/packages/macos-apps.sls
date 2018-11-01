@@ -13,8 +13,7 @@ mas-{{ app }}:
 
 
 {% for package in mac_cask_packages | sort %}
-brew-{{ package }}:
-  pkg.installed:
-    - name: {{ package }}
-    - unless: if [[ {{ package }} == *"cask"* ]]; then brew cask list | grep $(basename {{ package }}); else brew list | grewp $(basename package);fi
+install or upgrade gnupg via brew package {{ package }}:
+  cmd.run:
+    - name: brew upgrade {{ package }} || brew install {{ package }}
 {% endfor %}

@@ -16,17 +16,19 @@ install xcode-select:
     - unless: xcode-select --install 2>&1 | grep installed
 
 {% for package in mac_packages | sort %}
-brew-{{ package }}:
-  pkg.installed:
-    - name: {{ package }}
-    - unless: if [[ {{ package }} == *"cask"* ]]; then brew cask list | grep $(basename {{ package }}); else brew list | grewp $(basename package);fi
+install or upgrade gnupg via brew package {{ package }}:
+  cmd.run:
+    - name: brew upgrade {{ package }} || brew install {{ package }}
 {% endfor %}
 
-gnupg:
-  pkg.installed:
-    - pkgs:
-      - gnupg
-      - pinentry-mac
+
+install or upgrade gnupg:
+  cmd.run:
+    - name: brew upgrade gnupg || brew install gnupg
+
+install or upgrade pinentry-mac:
+  cmd.run:
+    - name: brew upgrade pinentry-mac || brew install pinentry-mac
   file.append:
     - name: {{ absolute_home_path }}/.gnupg/gpg-agent.conf
     - text: 'pinentry-program /usr/local/bin/pinentry-mac'

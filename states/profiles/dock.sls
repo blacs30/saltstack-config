@@ -8,13 +8,13 @@ com.lisowski.config.dock.mobileconfig:
       - PayloadType: com.apple.dock
         PayloadDisplayName: "Dock"
         orientation: 'bottom'
-        position-immutable: true
-        mineffect: 'scale'
-        mineffect-immutable: true
-        launchanim: true
-        launchanim-immutable: true
+        position-immutable: false
+        mineffect: 'suck'
+        mineffect-immutable: false
+        launchanim: false
+        launchanim-immutable: false
         show-process-indicators: true
-        show-process-indicators-immutable: true
+        show-process-indicators-immutable: false
         MCXDockSpecialFolders: ['AddDockMCXDocumentsFolder']
         contents-immutable: false
         static-only: false
@@ -23,4 +23,4 @@ com.lisowski.config.dock.mobileconfig:
         autohide: true
         minimize-to-application: false
         magnification: true
-        magnify-immutable: true
+        magnify-immutable: false

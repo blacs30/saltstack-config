@@ -1,11 +1,13 @@
-d12frosted/emacs-plus/emacs-plus:
-  pkg.installed
+install or upgrade emacs-plus:
+  cmd.run:
+    - name: brew upgrade d12frosted/emacs-plus/emacs-plus || brew install d12frosted/emacs-plus/emacs-plus
 
-railwaycat/emacsmacport/emacs-mac:
-  pkg.installed
+install or upgrade emacs-mac:
+  cmd.run:
+    - name: brew upgrade railwaycat/emacsmacport/emacs-mac || brew install railwaycat/emacsmacport/emacs-mac
 
 link emacs-mac to applications:
   cmd.run:
-  - name: ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications
+  - name: ln -sf /usr/local/opt/emacs-mac/Emacs.app /Applications
   - require:
-    - pkg: railwaycat/emacsmacport/emacs-mac
+    - cmd: install or upgrade emacs-plus
