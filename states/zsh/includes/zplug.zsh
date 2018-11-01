@@ -12,7 +12,6 @@ source $ZPLUG_HOME/init.zsh
 
 zplug "plugins/colored-man-pages",      from:oh-my-zsh
 zplug "plugins/colorize",               from:oh-my-zsh
-zplug "plugins/z",                      from:oh-my-zsh
 zplug "plugins/wd",                      from:oh-my-zsh
 zplug "hlissner/zsh-autopair"
 zplug "zsh-users/zsh-completions"
@@ -29,16 +28,11 @@ zplug "plugins/terraform",                from:oh-my-zsh
 zplug "plugins/gitignore",                    from:oh-my-zsh
 zplug "plugins/vault",                  from:oh-my-zsh
 zplug "plugins/python",                 from:oh-my-zsh
-zplug "plugins/brew",                  from:oh-my-zsh
-zplug "plugins/jira",                  from:oh-my-zsh
 zplug "plugins/dash",                from:oh-my-zsh
-zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
-zplug "willghatch/zsh-saneopt", from:"github", use:"saneopt", as:plugin
 zplug "rawkode/zsh-docker-run", from:"github", as:plugin
 zplug "plugins/github",                    from:oh-my-zsh
-zplug "plugins/minikube",                from:oh-my-zsh
 zplug "plugins/docker",                 from:oh-my-zsh
- 
+
 # disable as long as not really needed
 # zplug "plugins/docker-compose",         from:oh-my-zsh
 # zplug "plugins/kubectl",                from:oh-my-zsh
@@ -86,3 +80,8 @@ zplug_check () {
 # zplug "plugins/xcode",                  from:oh-my-zsh
 # zplug "plugins/per-directory-history",  from:oh-my-zsh
 # zplug "plugins/command-not-found",      from:oh-my-zsh
+# zplug "plugins/z",                      from:oh-my-zsh
+# zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
+# zplug "plugins/minikube",                from:oh-my-zsh
+# zplug "plugins/brew",                  from:oh-my-zsh
+# zplug "plugins/jira",                  from:oh-my-zsh

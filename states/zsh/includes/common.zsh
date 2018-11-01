@@ -24,12 +24,12 @@ alias e=edit
 
 # Language.
 # ---------
-if [[ -z "$LANG" ]]; then
+# if [[ -z "$LANG" ]]; then
     export LANGUAGE=en_US.UTF-8
     export LC_CTYPE=en_US.UTF-8
     export LC_ALL=en_US.UTF-8
     eval "$(locale)"
-fi
+# fi
 
 
 # Execute commands for each file in current directory.
@@ -173,56 +173,56 @@ function addsubs() {
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_";
 }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
-	local tmpFile="${@%/}.tar";
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
+  local tmpFile="${@%/}.tar";
+  tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
-	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # macOS `stat`
-		stat -c"%s" "${tmpFile}" 2> /dev/null;  # GNU `stat`
-	);
+  size=$(
+    stat -f"%z" "${tmpFile}" 2> /dev/null; # macOS `stat`
+    stat -c"%s" "${tmpFile}" 2> /dev/null;  # GNU `stat`
+  );
 
-	local cmd="";
-	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli";
-	else
-		if hash pigz 2> /dev/null; then
-			cmd="pigz";
-		else
-			cmd="gzip";
-		fi;
-	fi;
+  local cmd="";
+  if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
+    # the .tar file is smaller than 50 MB and Zopfli is available; use it
+    cmd="zopfli";
+  else
+    if hash pigz 2> /dev/null; then
+      cmd="pigz";
+    else
+      cmd="gzip";
+    fi;
+  fi;
 
-	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
-	"${cmd}" -v "${tmpFile}" || return 1;
-	[ -f "${tmpFile}" ] && rm "${tmpFile}";
+  echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
+  "${cmd}" -v "${tmpFile}" || return 1;
+  [ -f "${tmpFile}" ] && rm "${tmpFile}";
 
-	zippedSize=$(
-		stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # macOS `stat`
-		stat -c"%s" "${tmpFile}.gz" 2> /dev/null; # GNU `stat`
-	);
+  zippedSize=$(
+    stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # macOS `stat`
+    stat -c"%s" "${tmpFile}.gz" 2> /dev/null; # GNU `stat`
+  );
 
-	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
+  echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
 }
 
 
 # Create a data URL from a file
 function dataurl() {
-	local mimeType=$(file -b --mime-type "$1");
-	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8";
-	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+  local mimeType=$(file -b --mime-type "$1");
+  if [[ $mimeType == text/* ]]; then
+    mimeType="${mimeType};charset=utf-8";
+  fi
+  echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
 
@@ -262,100 +262,100 @@ function preview() {
 
 # Compare original and gzipped file size
 function gz() {
-	  local origsize=$(wc -c < "$1");
-	  local gzipsize=$(gzip -c "$1" | wc -c);
-	  local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
-	  printf "orig: %d bytes\n" "$origsize";
-	  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
+    local origsize=$(wc -c < "$1");
+    local gzipsize=$(gzip -c "$1" | wc -c);
+    local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
+    printf "orig: %d bytes\n" "$origsize";
+    printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
 # Syntax-highlight JSON strings or files
 # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
 function json() {
-	  if [ -t 0 ]; then # argument
-		    python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	  else # pipe
-		    python -mjson.tool | pygmentize -l javascript;
-	  fi;
+    if [ -t 0 ]; then # argument
+        python -mjson.tool <<< "$*" | pygmentize -l javascript;
+    else # pipe
+        python -mjson.tool | pygmentize -l javascript;
+    fi;
 }
 
 # Run `dig` and display the most useful info
 function digga() {
-	  dig +nocmd "$1" any +multiline +noall +answer;
+    dig +nocmd "$1" any +multiline +noall +answer;
 }
 
 
 # Get a character’s Unicode code point
 function codepoint() {
-	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
-	# print a newline unless we’re piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
+  perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
+  # print a newline unless we’re piping the output to another program
+  if [ -t 1 ]; then
+    echo ""; # newline
+  fi;
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
-	if [ -z "${1}" ]; then
-		echo "ERROR: No domain specified.";
-		return 1;
-	fi;
+  if [ -z "${1}" ]; then
+    echo "ERROR: No domain specified.";
+    return 1;
+  fi;
 
-	local domain="${1}";
-	echo "Testing ${domain}…";
-	echo ""; # newline
+  local domain="${1}";
+  echo "Testing ${domain}…";
+  echo ""; # newline
 
-	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
-		| openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
+  local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
+    | openssl s_client -connect "${domain}:443" -servername "${domain}" 2>&1);
 
-	if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
-		local certText=$(echo "${tmp}" \
-			| openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
-			no_serial, no_sigdump, no_signame, no_validity, no_version");
-		echo "Common Name:";
-		echo ""; # newline
-		echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//";
-		echo ""; # newline
-		echo "Subject Alternative Name(s):";
-		echo ""; # newline
-		echo "${certText}" | grep -A 1 "Subject Alternative Name:" \
-			| sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2;
-		return 0;
-	else
-		echo "ERROR: Certificate not found.";
-		return 1;
-	fi;
+  if [[ "${tmp}" = *"-----BEGIN CERTIFICATE-----"* ]]; then
+    local certText=$(echo "${tmp}" \
+      | openssl x509 -text -certopt "no_aux, no_header, no_issuer, no_pubkey, \
+      no_serial, no_sigdump, no_signame, no_validity, no_version");
+    echo "Common Name:";
+    echo ""; # newline
+    echo "${certText}" | grep "Subject:" | sed -e "s/^.*CN=//" | sed -e "s/\/emailAddress=.*//";
+    echo ""; # newline
+    echo "Subject Alternative Name(s):";
+    echo ""; # newline
+    echo "${certText}" | grep -A 1 "Subject Alternative Name:" \
+      | sed -e "2s/DNS://g" -e "s/ //g" | tr "," "\n" | tail -n +2;
+    return 0;
+  else
+    echo "ERROR: Certificate not found.";
+    return 1;
+  fi;
 }
 
 # `s` with no arguments opens the current directory in Sublime Text, otherwise
 # opens the given location
 function s() {
-	  if [ $# -eq 0 ]; then
-		    subl .;
-	  else
-		    subl "$@";
-	  fi;
+    if [ $# -eq 0 ]; then
+        subl .;
+    else
+        subl "$@";
+    fi;
 }
 
 # `v` with no arguments opens the current directory in Vim, otherwise opens the
 # given location
 function v() {
-	  if [ $# -eq 0 ]; then
-		    vim .;
-	  else
-		    vim "$@";
-	  fi;
+    if [ $# -eq 0 ]; then
+        vim .;
+    else
+        vim "$@";
+    fi;
 }
 
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
-	  if [ $# -eq 0 ]; then
-		    open .;
-	  else
-		    open "$@";
-	  fi;
+    if [ $# -eq 0 ]; then
+        open .;
+    else
+        open "$@";
+    fi;
 }
 
 
@@ -431,7 +431,6 @@ function get-pass() {
 setopt +o nomatch
 # Correct commands.
 setopt CORRECT
-setopt interactivecomments # allow to use # in the shell to comment a comment
 
 setopt BRACE_CCL          # Allow brace character class list expansion.
 setopt COMBINING_CHARS    # Combine zero-length punctuation characters (accents)
@@ -448,6 +447,93 @@ setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a traili
 unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor
 
+
+
+
+####
+# willghatch/zsh-saneopt
+# start
+####
+# options that should be mostly pretty agreeable
+
+# no c-s/c-q output freezing
+setopt noflowcontrol
+# allow expansion in prompts
+setopt prompt_subst
+# this is default, but set for share_history
+setopt append_history
+# save each command's beginning timestamp and the duration to the history file
+setopt extended_history
+# display PID when suspending processes as well
+setopt longlistjobs
+# try to avoid the 'zsh: no matches found...'
+setopt nonomatch
+# report the status of backgrounds jobs immediately
+setopt notify
+# whenever a command completion is attempted, make sure the entire command path
+# is hashed first.
+setopt hash_list_all
+# not just at the end
+setopt completeinword
+# use zsh style word splitting
+setopt noshwordsplit
+# allow use of comments in interactive code
+setopt interactivecomments
+
+if [[ -z "$ZSH_SANEOPT_INSANITY" ]]; then
+    ZSH_SANEOPT_INSANITY=1
+fi
+
+if [[ "$ZSH_SANEOPT_INSANITY" -gt 0 ]]; then
+    # in order to use #, ~ and ^ for filename generation grep word
+    # *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> searches for word not in compressed files
+    # don't forget to quote '^', '~' and '#'!
+    setopt extended_glob
+
+    # don't error out when unset parameters are used
+    setopt unset
+fi
+
+###########
+# These are some more options that might warrant being on higher insanity levels,
+# but since I don't use them... I'll leave them out for now
+
+# watch for everyone but me and root
+#watch=(notme root)
+# automatically remove duplicates from these arrays
+#typeset -U path cdpath fpath manpath
+
+# import new commands from the history file also in other zsh-session
+#setopt share_history
+# If a new command line being added to the history list duplicates an older
+# one, the older command is removed from the list
+#setopt histignorealldups
+# remove command lines from the history list when the first character on the
+# line is a space
+#setopt histignorespace
+# if a command is issued that can't be executed as a normal command, and the
+# command is the name of a directory, perform the cd command to that directory.
+#setopt auto_cd
+
+
+# Don't send SIGHUP to background processes when the shell exits.
+#setopt nohup
+# make cd push the old directory onto the directory stack.
+#setopt auto_pushd
+# avoid "beep"ing
+#setopt nobeep
+# don't push the same dir twice.
+#setopt pushd_ignore_dups
+# * shouldn't match dotfiles. ever.
+#setopt noglobdots
+
+
+####
+# willghatch/zsh-saneopt
+# end
+####
+
+
 # You can cd into a directory by typing its name, no cd required
 setopt AUTOCD
 setopt autopushd pushdignoredups PUSHD_SILENT PUSHD_TO_HOME
@@ -455,7 +541,6 @@ setopt autopushd pushdignoredups PUSHD_SILENT PUSHD_TO_HOME
 setopt CDABLE_VARS          # Change directory to a path stored in a variable.
 setopt AUTO_NAME_DIRS       # Auto add variable-stored paths to ~ list.
 setopt MULTIOS              # Write to multiple descriptors.
-setopt EXTENDED_GLOB        # Use extended globbing syntax.
 unsetopt CLOBBER            # Do not overwrite existing files with > and >>.
                             # Use >! and >>! to bypass.
 #
@@ -464,7 +549,6 @@ unsetopt CLOBBER            # Do not overwrite existing files with > and >>.
 
 setopt LONG_LIST_JOBS     # List jobs in the long format by default.
 setopt AUTO_RESUME        # Attempt to resume existing job before creating a new process.
-setopt NOTIFY             # Report status of background jobs immediately.
 unsetopt BG_NICE          # Don't run all background jobs at a lower priority.
 unsetopt HUP              # Don't kill jobs on shell exit.
 unsetopt CHECK_JOBS       # Don't report on jobs when shell exit.
