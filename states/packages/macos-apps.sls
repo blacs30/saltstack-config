@@ -2,7 +2,7 @@
 {% from "packages/packages.jinja" import mac_cask_packages with context %}
 {% set absolute_home_path =  salt['cmd.shell']('echo $HOME') %}
 
-{% for app in mas_apps %}
+{% for app in mas_apps | sort %}
 mas-{{ app }}:
   cmd.run:
     - name: mas install  {{ mas_apps[app] }}
@@ -12,7 +12,7 @@ mas-{{ app }}:
 {% endfor %}
 
 
-{% for package in mac_cask_packages %}
+{% for package in mac_cask_packages | sort %}
 brew-{{ package }}:
   pkg.installed:
     - name: {{ package }}

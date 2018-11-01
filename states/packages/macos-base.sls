@@ -15,7 +15,7 @@ install xcode-select:
         softwareupdate -i "$PROD" -v
     - unless: xcode-select --install 2>&1 | grep installed
 
-{% for package in mac_packages %}
+{% for package in mac_packages | sort %}
 brew-{{ package }}:
   pkg.installed:
     - name: {{ package }}
