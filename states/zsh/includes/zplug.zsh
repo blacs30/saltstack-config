@@ -13,12 +13,10 @@ source $ZPLUG_HOME/init.zsh
 zplug "plugins/colored-man-pages",      from:oh-my-zsh
 zplug "plugins/colorize",               from:oh-my-zsh
 zplug "plugins/wd",                      from:oh-my-zsh
-zplug "hlissner/zsh-autopair"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search"
-zplug "desyncr/auto-ls"
 zplug "plugins/git",                    from:oh-my-zsh
 zplug "plugins/aws",                    from:oh-my-zsh, if:"(( $+commands[aws] ))"
 zplug "plugins/history",               from:oh-my-zsh
@@ -26,16 +24,12 @@ zplug "plugins/git-flow",                    from:oh-my-zsh, if:"$(git flow  > /
 zplug "junegunn/fzf", use:"shell/*.zsh", as:plugin, if:"(( $+commands[fzf] ))"
 zplug "plugins/terraform",                from:oh-my-zsh
 zplug "plugins/gitignore",                    from:oh-my-zsh
-zplug "plugins/vault",                  from:oh-my-zsh
-zplug "plugins/python",                 from:oh-my-zsh
-zplug "plugins/dash",                from:oh-my-zsh
-zplug "rawkode/zsh-docker-run", from:"github", as:plugin
 zplug "plugins/github",                    from:oh-my-zsh
 zplug "plugins/docker",                 from:oh-my-zsh
+zplug "plugins/docker-compose",         from:oh-my-zsh
+zplug "plugins/kubectl",                from:oh-my-zsh
 
 # disable as long as not really needed
-# zplug "plugins/docker-compose",         from:oh-my-zsh
-# zplug "plugins/kubectl",                from:oh-my-zsh
 # zplug "plugins/kube-ps1",                from:oh-my-zsh
 # zplug "plugins/vagrant",                  from:oh-my-zsh
 # zplug "plugins/vagrant-prompt",                  from:oh-my-zsh
@@ -85,3 +79,8 @@ zplug_check () {
 # zplug "plugins/minikube",                from:oh-my-zsh
 # zplug "plugins/brew",                  from:oh-my-zsh
 # zplug "plugins/jira",                  from:oh-my-zsh
+# zplug "rawkode/zsh-docker-run", from:"github", as:plugin
+# zplug "plugins/vault",                  from:oh-my-zsh
+# zplug "plugins/python",                 from:oh-my-zsh
+# zplug "plugins/dash",                from:oh-my-zsh
+# zplug "hlissner/zsh-autopair"

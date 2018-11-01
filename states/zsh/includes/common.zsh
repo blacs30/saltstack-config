@@ -3,6 +3,8 @@
 if [[ "$OSTYPE" == darwin* ]]; then
     export BROWSER='open'
 fi
+# BROWSER=''
+# unset BROWSER
 
 # Editors.
 # --------
@@ -24,12 +26,13 @@ alias e=edit
 
 # Language.
 # ---------
-# if [[ -z "$LANG" ]]; then
+if [[ -z "$LANG" ]] || [[ "$LANG" != "EN_US.UTF-8" ]]; then
     export LANGUAGE=en_US.UTF-8
     export LC_CTYPE=en_US.UTF-8
     export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
     eval "$(locale)"
-# fi
+fi
 
 
 # Execute commands for each file in current directory.
@@ -391,7 +394,7 @@ then
   export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
 fi
 
-if type gpg-connect-agent > /dev/null 2&>1; then
+if type gpg-connect-agent > /dev/null 2>&1; then
   gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
@@ -446,7 +449,6 @@ setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
 setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
 unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor
-
 
 
 
@@ -534,6 +536,7 @@ fi
 ####
 
 
+
 # You can cd into a directory by typing its name, no cd required
 setopt AUTOCD
 setopt autopushd pushdignoredups PUSHD_SILENT PUSHD_TO_HOME
@@ -569,8 +572,6 @@ compinit -u
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-BROWSER=''
-unset BROWSER
 
 if [[ "$OSTYPE" == darwin* ]] && [[ -n "$ITERM_SESSION_ID" ]] ; then
 source ~/.iterm2_shell_integration.zsh
