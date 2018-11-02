@@ -3,4 +3,4 @@ base:
     - setup
     - dotfiles
     - packages
-    # - profiles
+    - profiles

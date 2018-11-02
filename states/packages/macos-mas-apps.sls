@@ -5,6 +5,5 @@ mas-{{ app }}:
   cmd.run:
     - name: mas install  {{ mas_apps[app] }}
     - unless: mas list | grep -q {{ mas_apps[app] }}
-    - require:
-        - pkg: mas
+    - onlyif: type mas
 {% endfor %}
