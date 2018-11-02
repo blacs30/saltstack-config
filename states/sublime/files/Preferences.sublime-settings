@@ -2,7 +2,7 @@
 	"always_show_minimap_viewport": false,
 	"bold_folder_labels": true,
 	"caret_style": "phase",
-	"color_scheme": "Packages/User/Tomorrow-Night (Flake8Lint).tmTheme",
+	"color_scheme": "Packages/User/Cyanide - Alert - Black (Flake8Lint).tmTheme",
 	"draw_indent_guides": true,
 	"draw_white_space": "none",
 	"ensure_newline_at_eof_on_save": true,
@@ -54,7 +54,7 @@
 	"show_full_path": true,
 	"side_bar_width": 150,
 	"tab_size": 4,
-	"theme": "Cyanide - Alert.sublime-theme",
+	"theme": "Adaptive.sublime-theme",
 	"trailing_spaced_modified_lines_only": false,
 	"translate_tabs_to_spaces": true,
 	"trim_spaces_syntax_ignore":

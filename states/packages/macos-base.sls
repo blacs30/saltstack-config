@@ -1,6 +1,4 @@
-{% from "packages/packages.jinja" import mas_apps with context %}
 {% from "packages/packages.jinja" import mac_packages with context %}
-{% from "packages/packages.jinja" import mac_pip_packages with context %}
 {% set absolute_home_path =  salt['cmd.shell']('echo $HOME') %}
 
 {% for package in mac_packages | sort %}
@@ -35,9 +33,3 @@ install-cloudflare-cli:
   cmd.run:
     - name: npm install -g cloudflare-cli
     - unless: type cfcli
-
-{% for pip_package in mac_pip_packages %}
-pip-{{ pip_package }}:
-  pip.installed:
-    - name: {{ pip_package }}
-{% endfor %}
