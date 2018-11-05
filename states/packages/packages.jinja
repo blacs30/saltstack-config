@@ -58,6 +58,7 @@
 {% set mac_pip3_packages = [
    'psutil',
    'mypy',
+   'onelogin-aws-login',
    'awslogs',
    'powerline-shell',
    'awscli',
@@ -80,6 +81,14 @@
    ]
 %}
 
+
+{% set mac_graphic_apps = [
+   'adobe-photoshop-lightroom',
+   'capture-one',
+   'adobe-dng-converter'
+   ]
+%}
+
 {% set mac_cask_packages =  [
    'caskroom/cask/sublime-merge',
    'caskroom/cask/ubersicht',
@@ -91,7 +100,6 @@
    'caskroom/cask/drivedx',
    'caskroom/cask/consul-cli',
    'caskroom/cask/firefox',
-   'caskroom/cask/opera',
    'caskroom/cask/google-chrome',
    'caskroom/cask/fanny',
    'caskroom/cask/kubernetes-cli',
@@ -103,9 +111,7 @@
    'caskroom/cask/protonmail-bridge',
    'caskroom/cask/protonvpn',
    'caskroom/cask/mailmate',
-   'caskroom/cask/vivaldi',
    'caskroom/cask/github',
-   'caskroom/cask/gitkraken',
    'caskroom/cask/sourcetree',
    'caskroom/cask/charles',
    'caskroom/cask/brave',

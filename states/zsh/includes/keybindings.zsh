@@ -1,3 +1,5 @@
+export WORDCHARS='*?[]~!$%^(){}<>'
+#export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 zsh-forward-word () {
       local WORDCHARS="${WORDCHARS:s#/#}"
       WORDCHARS="${WORDCHARS:s#.#}"
