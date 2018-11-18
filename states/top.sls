@@ -4,3 +4,4 @@ base:
     - dotfiles
     - packages
     - profiles
+    - wifi-toggle
