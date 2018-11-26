@@ -16,6 +16,12 @@ then
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# Install git lfs
+brew install git-lfs
+git lfs install
+git lfs fetch
+git lfs pull
+
 # Do we need to install SaltStack?
 command -v salt-call > /dev/null 2>&1
 if [ $? -ne 0 ];
