@@ -2,13 +2,11 @@
 /tmp/toggleAirport.sh:
   file.managed:
     - source: salt://{{ slspath }}/files/toggleAirport.sh
-    - user: root
     - mode: 755
 
 /tmp/com.mine.toggleairport.plist:
   file.managed:
     - source: salt://{{ slspath }}/files/com.mine.toggleairport.plist
-    - user: root
     - mode: 644
 
 enable launch agent:
@@ -16,6 +14,7 @@ enable launch agent:
   - name: |
       sudo mv -f /tmp/toggleAirport.sh /Library/Scripts/toggleAirport.sh;
       sudo mv -f /tmp/com.mine.toggleairport.plist /Library/LaunchAgents/com.mine.toggleairport.plist;
+      sudo chown root /Library/Scripts/toggleAirport.sh /Library/LaunchAgents/com.mine.toggleairport.plist
       sudo launchctl load /Library/LaunchAgents/com.mine.toggleairport.plist;
   - require:
     - file: /tmp/toggleAirport.sh
