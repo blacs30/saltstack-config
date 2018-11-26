@@ -16,7 +16,8 @@ apply-macos-init:
 install-fonts:
   archive.extracted:
     - source: https://github.com/powerline/fonts/archive/master.zip
-    - source_hash: sha1=232946eba7372ba65709b411b2fac07a4458ea7d
+    # - source_hash: sha1=232946eba7372ba65709b411b2fac07a4458ea7d
+    - skip_verify: True
     - name: {{ absolute_home_path }}/.powerline-fonts
   cmd.run:
     - name: {{ absolute_home_path }}/.powerline-fonts/fonts-master/install.sh

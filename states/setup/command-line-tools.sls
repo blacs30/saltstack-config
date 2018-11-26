@@ -21,7 +21,8 @@ create tmp dmg  file:
   file.managed:
     - name: /tmp/clt.dmg
     - source: salt://{{ slspath }}/files/Command_Line_Tools_macOS_10.14_for_Xcode_10.dmg
-    - source_hash: sha256=3e52c644faa958f1af0be5afd6b520aaa66673e9c3c4a87e17d0dea70693f6c8
+    # - source_hash: sha256=3e52c644faa958f1af0be5afd6b520aaa66673e9c3c4a87e17d0dea70693f6c8
+    - skip_verify: True
     - require:
       - file: make sure file does not exist
 

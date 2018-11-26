@@ -18,4 +18,5 @@ install-package-control:
     - source: https://packagecontrol.io/Package%20Control.sublime-package
     - user: {{ grains['username'] }}
     - makedirs: True
-    - source_hash: sha256=6f4c264a24d933ce70df5dedcf1dcaeeebe013ee18cced0ef93d5f746d80ef60
+    - skip_verify: True
+    # - source_hash: sha256=6f4c264a24d933ce70df5dedcf1dcaeeebe013ee18cced0ef93d5f746d80ef60
