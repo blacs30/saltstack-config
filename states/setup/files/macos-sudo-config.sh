@@ -74,4 +74,13 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bo
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
+# Enable Remote Desktop access
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw -vncpw password -restart -agent -privs -allowAccessFor -specifiedUsers
+
+# Configure user ladmin for the Remote Desktop access
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -access -on -privs -all -users ladmin
+
+# Enable Remote SSH access
+sudo systemsetup -setremotelogin on
+
 fi
