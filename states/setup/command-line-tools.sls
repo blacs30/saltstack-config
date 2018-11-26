@@ -37,4 +37,9 @@ remove tmp dmg after setup:
     - name: /tmp/clt.dmg
     - require:
       - cmd: install developer headers
+
 {% endif %}
+
+accept xcode licence:
+  cmd.run:
+    - name: sudo xcodebuild -license accept
