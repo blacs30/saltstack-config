@@ -1,14 +1,14 @@
 # https://gist.github.com/albertbori/1798d88a93175b9da00b
 /Library/Scripts/toggleAirport.sh:
   file.managed:
-    - source: salt://{{ slspath }}/toggleAirport.sh
+    - source: salt://{{ slspath }}/files/toggleAirport.sh
     - user: root
     - mode: 755
 
 
 /Library/LaunchAgents/com.mine.toggleairport.plist:
   file.managed:
-    - source: salt://{{ slspath }}/com.mine.toggleairport.plist
+    - source: salt://{{ slspath }}/files/com.mine.toggleairport.plist
     - user: root
     - mode: 644
 

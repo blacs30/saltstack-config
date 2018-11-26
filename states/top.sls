@@ -3,5 +3,7 @@ base:
     - setup
     - dotfiles
     - packages
-    - profiles
     - wifi-toggle
+    # Profiles can only be installed by running sudo salt-call ...
+    #- profiles
+
