@@ -8,8 +8,8 @@ include:
   - profiles.passwordpolicy
   - profiles.loginwindow
   - profiles.dock
-  # - profiles.mobility
-  # - profiles.filevault
-  # - profiles.printing
-  # - profiles.certificates
-  # - profiles.active_directory
+  - profiles.mobility
+  - profiles.filevault
+  - profiles.printing
+  - profiles.certificates
+  - profiles.active_directory
