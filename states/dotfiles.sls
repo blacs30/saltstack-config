@@ -6,6 +6,7 @@ include:
     - spacemacs
     - sublime
     - vim
+    - vscode
     - zsh
 
 
