@@ -1,9 +1,26 @@
 {
-    "editor.fontFamily": "Source Code Pro, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "Source Code Pro for Powerline",
     "editor.fontSize": 15,
     "window.zoomLevel": 0,
     "files.autoSave": "on",
     "files.autoSaveDelay": 60,
     "editor.multiCursorModifier": "ctrlCmd",
-    "python.pythonPath": "/usr/local/bin/python3"
+    "python.pythonPath": "/usr/local/bin/python3",
+    "githubPullRequests.hosts": [
+        {
+            "host": "https://github.com",
+            "username": "oauth",
+            "token": "system"
+        }
+    ],
+    "workbench.colorTheme": "Visual Studio Dark",
+    "editor.fontWeight": "700",
+    "workbench.fontAliasing": "antialiased",
+    "git.autofetch": true,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "terraform.telemetry.enabled": false,
+    "code-runner.enableAppInsights": false,
+    "gitlens.advanced.telemetry.enabled": false,
+    "githubPullRequests.telemetry.enabled": false
 }

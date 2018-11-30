@@ -7,7 +7,7 @@ include:
 
 vscode-config:
   file.managed:
-    - name: {{ absolute_home_path }}/Library/Application\ Support/Code/User/settings.json
+    - name: {{ absolute_home_path }}/Library/Application Support/Code/User/settings.json
     - source: salt://{{ slspath }}/files/settings.json
     - user: {{ grains['username'] }}
     - makedirs: True
