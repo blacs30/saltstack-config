@@ -5,17 +5,19 @@
 install or upgrade gnupg via brew package {{ package }}:
   cmd.run:
     - name: brew upgrade {{ package }} || brew install {{ package }}
-    - onlyif: if brew ls --versions | grep {{ package }}; then brew outdated | grep {{ package }}; else return true; fi
+    - onlyif: if brew ls --versions | grep -q {{ package }}; then brew outdated | grep -q {{ package }}; else return true; fi
 {% endfor %}
 
 
 install or upgrade gnupg:
   cmd.run:
     - name: brew upgrade gnupg || brew install gnupg
+    - onlyif: if brew cask ls --versions | grep -q gnupg; then brew cask outdated | grep -q gnupg; else return 1; fi
 
 install or upgrade pinentry-mac:
   cmd.run:
     - name: brew upgrade pinentry-mac || brew install pinentry-mac
+    - onlyif: if brew cask ls --versions | grep -q pinentry-mac; then brew cask outdated | grep -q pinentry-mac; else return 1; fi
   file.append:
     - name: {{ absolute_home_path }}/.gnupg/gpg-agent.conf
     - text: 'pinentry-program /usr/local/bin/pinentry-mac'

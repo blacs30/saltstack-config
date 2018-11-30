@@ -4,5 +4,5 @@
 install or upgrade gnupg via brew package {{ package }}:
   cmd.run:
     - name: brew upgrade {{ package }} || brew install {{ package }}
-    - onlyif: if brew cask ls --versions | grep {{ package }}; then brew cask outdated | grep {{ package }}; else return true; fi
+    - onlyif: if brew cask ls --versions | grep -q $(basename {{ package }}); then brew cask outdated | grep -q $(basename {{ package }}); else return 0; fi
 {% endfor %}

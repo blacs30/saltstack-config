@@ -16,5 +16,5 @@ vscode-config:
 {% for ext in extensions %}
 install-vscode-extension-{{ ext }}:
   cmd.run:
-    - name: code --install-extension {{ ext }}
+    - name: code --install-extension {{ ext }} --force
 {% endfor %}

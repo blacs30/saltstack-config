@@ -4,12 +4,14 @@
 install or upgrade gnupg via brew package {{ package }}:
   cmd.run:
     - name: brew cask upgrade {{ package }} || brew cask install {{ package }}
+    - onlyif: if brew cask ls --versions | grep -q $(basename {{ package }}); then brew cask outdated | grep -q $(basename {{ package }}); else return 1; fi
 {% endfor %}
 
 {%- if grains['os'] == 'MacOS' %}
 download adobe cc installer:
   cmd.run:
     - name: brew cask upgrade adobe-creative-cloud || brew cask install adobe-creative-cloud
+    - onlyif: if brew cask ls --versions | grep -q adobe-creative-cloud; then brew cask outdated | grep -q adobe-creative-cloud; else return 1; fi
 
 install adobe cc:
   cmd.run:
