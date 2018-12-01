@@ -8,8 +8,8 @@ fi
 
 # Editors.
 # --------
-export EDITOR='/usr/local/bin/subl'
-export VISUAL='/usr/local/bin/subl'
+export EDITOR='/usr/local/bin/code'
+export VISUAL='/usr/local/bin/code'
 export PAGER='less'
 export MANPAGER='less -X'
 export MANWIDTH=${MANWIDTH:-80}
@@ -331,13 +331,13 @@ function getcertnames() {
   fi;
 }
 
-# `s` with no arguments opens the current directory in Sublime Text, otherwise
+# `s` with no arguments opens the current directory in Code, otherwise
 # opens the given location
-function s() {
+function c() {
     if [ $# -eq 0 ]; then
-        subl .;
+        code .;
     else
-        subl "$@";
+        code "$@";
     fi;
 }
 

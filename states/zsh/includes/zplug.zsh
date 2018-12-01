@@ -70,7 +70,6 @@ zplug_check () {
 # zplug "plugins/django",                 from:oh-my-zsh
 # zplug "Valiev/almostontop"
 #zplug "plugins/dotenv",                 from:oh-my-zsh
-# zplug "plugins/sublime",                from:oh-my-zsh
 # zplug "plugins/xcode",                  from:oh-my-zsh
 # zplug "plugins/per-directory-history",  from:oh-my-zsh
 # zplug "plugins/command-not-found",      from:oh-my-zsh
