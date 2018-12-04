@@ -3,7 +3,12 @@
 // See https://hyper.is#cfg for all currently supported options.
 
 module.exports = {
+
   config: {
+  hyperBorder: {
+    borderColors: ['#fc1da7', '#fba506'],
+    borderWidth: '2px'
+  },
   paneNavigation: {
     debug: false,
     hotkeys: {
@@ -17,6 +22,7 @@ module.exports = {
       permutation_modifier: 'shift', // Added to jump and navigation hotkeys for pane permutation
       maximize: 'meta+shift+enter'
     },
+
     showIndicators: true, // Show pane number
     indicatorPrefix: '^⌥', // Will be completed with pane number
     indicatorStyle: { // Added to indicator <div>
@@ -28,6 +34,7 @@ module.exports = {
     focusOnMouseHover: false,
     inactivePaneOpacity: 0.6 // Set to 1 to disable inactive panes dimming
   },
+
   'hyper-match': {
         triggers: [
           {
@@ -54,6 +61,7 @@ module.exports = {
           },
       ]
   },
+
   hyperline: {
     plugins: [
       "hostname",
@@ -62,12 +70,11 @@ module.exports = {
       "cpu",
       "network",
       "battery",
-      "docker",
-      "time",
-      "uptime",
+      "Time",
       "git-status"
     ]
   },
+
   broadcast: {
       debug: true,
       hotkeys: {
@@ -86,6 +93,7 @@ module.exports = {
         background: 'red'
       }
     },
+
   autoProfile: {
       prompts: [
         {
@@ -130,6 +138,7 @@ module.exports = {
       stripAnsiColors: true, //default
       debug: false //default
     },
+
     hyperTabs: {
       activityColor: 'salmon',
       closeAlign: 'right',
@@ -164,20 +173,20 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // set to `true` (without backticks and without quotes) for blinking cursor
-    cursorBlink: false,
+    cursorBlink: true,
 
     // color of the text
     foregroundColor: '#fff',
 
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: '#000',
+    backgroundColor: 'rgba(0,0,0,1)',
 
     // terminal selection color
     selectionColor: 'rgba(248,28,229,0.3)',
 
     // border color (window, tabs)
-    borderColor: '#444',
+    borderColor: '#663',
 
     // custom CSS to embed in the main window
     css: '',
@@ -203,21 +212,21 @@ module.exports = {
     // an array here instead of a color map object
     colors: {
       black: '#000000',
-      red: '#C51E14',
-      green: '#1DC121',
-      yellow: '#C7C329',
-      blue: '#0A2FC4',
-      magenta: '#C839C5',
-      cyan: '#20C5C6',
-      white: '#C7C7C7',
-      lightBlack: '#686868',
-      lightRed: '#FD6F6B',
-      lightGreen: '#67F86F',
-      lightYellow: '#FFFA72',
-      lightBlue: '#6A76FB',
-      lightMagenta: '#ABCC00',
-      lightCyan: '#68FDFE',
-      lightWhite: '#FFFFFF',
+      red: '#d71e00',
+      green: '#5da602',
+      yellow: '#cfad00',
+      blue: '#417ab3',
+      magenta: '#88658d',
+      cyan: '#00a7aa',
+      white: '#dbded8',
+      lightBlack: '#676965',
+      lightRed: '#f44135',
+      lightGreen: '#98e342',
+      lightYellow: '#fcea60',
+      lightBlue: '#83afd8',
+      lightMagenta: '#bc93b6',
+      lightCyan: '#37e5e7',
+      lightWhite: '#f1f1ef',
     },
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
@@ -242,6 +251,9 @@ module.exports = {
     env: {
       LANG: "en_US.UTF-8"
     },
+
+    // scrollback buffer
+    scrollback: '20000',
 
     // set to `false` for no bell
     bell: 'SOUND',
@@ -272,32 +284,32 @@ module.exports = {
     "hyper-broadcast",
     "hyper-search",
     "hypercwd",
-    "hyperterm-tabs",
-    "hyper-tabs-enhanced",
     "hyper-autohide-tabs",
     "hyper-alt-click",
-    "hyper-simple-highlight-active-session",
     "hyperminimal",
-    // "hyper-match",
-    // "hyperlinks",
+    "hyper-match",
+    "hyperlinks",
     "hyper-autoprofile",
     "hyperline",
     "hyper-pane",
-    "hyperalfred",
-    // "hyper-statusline",
+    "hyperborder",
+    // "hyper-statusline", // not working together with hyperline
     // THEMES
     //
-    "hyperterm-monokai",
-    // "hyper-snazzy",
-    // "hyper-materialshell",
-    // "verminal",
-    // "hyper-solarized-dark",
+    // "hyperterm-monokai",
+    "hyper-night-owl",
+    // "hyperocean",
+    // "hyper-altair",
+    // "hyper-ayu-light",
+    // "hyper-one-light",
+    // "hyperterm-atom-dark",
   ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
-  localPlugins: [],
+  localPlugins: [
+  ],
 
   keymaps: {
     // Example
