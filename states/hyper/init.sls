@@ -10,5 +10,5 @@ install or upgrade hyper:
 hyper-config-file:
   file.managed:
     - name: {{ absolute_home_path }}/.hyper.js
-    - source: {{ slspath }}/files/hyper.js
+    - source: salt://{{ slspath }}/files/hyper.js
     - user: {{ grains['username'] }}
